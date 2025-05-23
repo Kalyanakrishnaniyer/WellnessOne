@@ -39,6 +39,8 @@ Make it motivational, engaging, and very practical. Use emojis and clear section
 # 🤖 GPT response
 def get_plan(user_data):
     prompt = generate_prompt(user_data)
+    print("🧠 Prompt sent to OpenAI:\n", prompt)
+
     res = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -46,7 +48,11 @@ def get_plan(user_data):
             {"role": "user", "content": prompt}
         ]
     )
-    return res.choices[0].message.content.strip()
+
+    plan = res.choices[0].message.content.strip()
+    print("📋 GPT response:\n", plan)
+    return plan
+
 
 # 🔄 Main WhatsApp webhook
 @app.route("/whatsapp", methods=["POST"])
