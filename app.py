@@ -55,6 +55,9 @@ def get_plan(user_data):
 
 
 # 🔄 Main WhatsApp webhook
+@app.route("/")
+def healthcheck():
+    return "✅ VitalAI is alive", 200
 @app.route("/whatsapp", methods=["POST"])
 def whatsapp():
     incoming_msg = request.form.get("Body").strip()
